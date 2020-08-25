@@ -1,5 +1,9 @@
 This is a base project to refresh on testing with Enzyme and Jest. From here the course splits into testing with Redux or testing with Hooks.
 
+To see Redux testing switch to branch `jotto-redux`
+
+To see Hooks testing switch to branch `jotto-hooks`
+
 This course is available on Udemy [here](https://www.udemy.com/share/101sTiAEETeFhaQXsD/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
