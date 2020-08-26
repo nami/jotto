@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Input = (props) => {
 	return (
@@ -6,5 +7,9 @@ const Input = (props) => {
 	  </div>
 	)
 }
+
+Input.propTypes = {
+	secretWord: PropTypes.string.isRequired
+};
 
 export default Input;
