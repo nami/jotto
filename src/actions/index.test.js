@@ -20,7 +20,7 @@ describe('getSecretWord action creator', () => {
 				response: secretWord
 			})
 		})
-		// you must add a .then after dispatch to ensure promise resolved before the test runs!
+		// you must return dispatch to ensure promise resolved before the test runs!
 		return store.dispatch(getSecretWord())
 			.then(() => {
 				const newState = store.getState()
