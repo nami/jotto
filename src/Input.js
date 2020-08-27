@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 const Input = (props) => {
 	const [ currentGuess, setCurrentGuess] = React.useState('')
 
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		setCurrentGuess(currentGuess)
+	}
+
 	return (
 	  <div data-test="input-component">
 	  <form className="form-inline">
@@ -18,6 +23,7 @@ const Input = (props) => {
 	  	<button
 		  	data-test="submit-button"
 		  	className="btn btn-primary mb-2"
+		  	onClick={handleSubmit}
 	  	>Submit</button>
 	  </form>
 	  </div>
