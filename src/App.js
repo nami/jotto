@@ -4,6 +4,7 @@ import './App.css';
 import GuessedWords from './GuessedWords';
 import Congrats from './Congrats';
 import hookActions from './actions/hookActions';
+import Input from './Input'
 
 function reducer(state, action) {
 	switch(action.type) {
@@ -17,7 +18,7 @@ function reducer(state, action) {
 const App = (props) => {
 	const [state, dispatch] = React.useReducer(
 		reducer,
-		{ secretWord: ''}
+		{ secretWord: null}
 	)
 
 	const setSecretWord = (secretWord) => dispatch({ type: 'setSecretWord', payload: secretWord })
@@ -27,10 +28,22 @@ const App = (props) => {
 		[]
 	)
 
+	if(!state.secretWord) {
+		return (
+			<div className="container" data-test="spinner">
+				<div className="spinner-border" role="status">
+					<span className="sr-only">Loading...</span>
+				</div>
+				<p>Loading secret word</p>
+			</div>
+		)
+	}
+
 	return (
 	  <div className="container" data-test="component-app">
 	    <h1>Jotto</h1>
 	    <Congrats success={true} />
+	    <Input secretWord={state.secretWord}/>
 	    <GuessedWords guessedWords={[{ guessedWord: 'train', letterMatchCount: 3}]}/>
 	  </div>
 	)
