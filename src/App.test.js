@@ -25,7 +25,14 @@ test('App renders without error', () => {
 describe('getSecretWord calls', () => {
 	test('getSecretWord gets called on App mount', () => {
 		setup()
-
 		expect(mockGetSecretWord).toHaveBeenCalled()
+	})
+	test('secretWord does not update on App update', () => {
+		const wrapper = setup()
+		// it always gets called once on mount
+		mockGetSecretWord.mockClear()
+		// wrapper.update() does not trigger use useEffect
+		wrapper.setProps()
+		expect(mockGetSecretWord).not.toHaveBeenCalled()
 	})
 });
