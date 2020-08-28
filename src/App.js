@@ -6,8 +6,8 @@ import Congrats from './Congrats';
 import hookActions from './actions/hookActions';
 
 import Input from './Input'
-import LanguagePicker from './LanguagePicker'
 import languageContext from './contexts/languageContext';
+import LanguagePicker from './LanguagePicker'
 
 function reducer(state, action) {
 	switch(action.type) {

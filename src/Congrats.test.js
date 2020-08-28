@@ -1,10 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-
-import languageContext from './contexts/languageContext';
+import { mount } from 'enzyme';
 
 import Congrats from './Congrats';
 import { findByTestAttr, checkProps } from '../test/testUtils';
+import languageContext from './contexts/languageContext';
 
 const setup = ({ success, language }) => {
 	language = language || 'en' 

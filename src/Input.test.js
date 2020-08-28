@@ -1,17 +1,29 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { findByTestAttr, checkProps } from '../test/testUtils';
 import Input from './Input';
+import languageContext from './contexts/languageContext';
 
 const defaultProps = { secretWord: 'party' };
 
-const setup = (props={}) => {
-	const setupProps = { ...defaultProps, ...props}
-	return shallow(<Input { ...setupProps } />)
-}
+// const setup = (props={}) => {
+// 	const setupProps = { ...defaultProps, ...props}
+// 	return shallow(<Input { ...setupProps } />)
+// }
+
+const setup = ({ secretWord, language }) => {
+	language = language || 'en' 
+	secretWord = secretWord || 'party' 
+
+	return mount(
+		<languageContext.Provider value={language}>
+			<Input secretWord={secretWord} />
+		</languageContext.Provider>
+	)
+};
 
 test('App renders without error', () => {
-	const wrapper = setup()
+	const wrapper = setup({})
 	const component = findByTestAttr(wrapper, 'input-component')
 	expect(component.length).toBe(1)
 })
@@ -28,7 +40,7 @@ describe('state controlled input field', () => {
 		// clear before every test
 		mockSetCurrentGuess.mockClear()
 		React.useState = jest.fn(() => ["", mockSetCurrentGuess])
-		wrapper = setup()
+		wrapper = setup({})
 	})
 
 	test('state updates with value of input box upon change', () => {
@@ -46,22 +58,15 @@ describe('state controlled input field', () => {
 	})
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+describe('languagePicker', () => {
+	test('correctly renders submit button in english', () => {
+		const wrapper = setup({ language: 'en' })
+		const submitButton = findByTestAttr(wrapper, 'submit-button')
+		expect(submitButton.text()).toBe('Submit')
+	})
+	test('correctly render congrats string in emoji', () => {
+		const wrapper = setup({ language: 'emoji' })
+		const submitButton = findByTestAttr(wrapper, 'submit-button')
+		expect(submitButton.text()).toBe('🚀')
+	})
+});
