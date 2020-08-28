@@ -2,8 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const LanguagePicker = ({ setLanguage }) => {
+	const languages = [
+		{ code: 'en', symbol: 'ENG'},
+		{ code: 'emoji', symbol: '🤔' }
+	];
+
+	const languageIcons = languages.map(lang => 
+		<span 
+		data-test="language-icon" 
+		key={lang.code}
+		onClick={() => setLanguage(lang.code)}> 
+		{lang.symbol} 
+		</span>
+	);
+
 	return (
-		<div className="hi">
+		<div className="hi" data-test="component-language-picker">
+			{languageIcons}
 		</div>
 	)
 }
