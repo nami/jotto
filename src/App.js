@@ -50,6 +50,7 @@ const App = (props) => {
 	return (
 	  <div className="container" data-test="component-app">
 	  	<h1>Jotto</h1>
+	  	{ state.secretWord }
 	  	<languageContext.Provider value={state.language}>
 	  		<guessedWordsContext.GuessedWordsProvider>
 		    <LanguagePicker setLanguage={setLanguage} />

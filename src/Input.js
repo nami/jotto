@@ -16,7 +16,7 @@ const Input = ({ secretWord }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const letterMatchCount = getLetterMatchCount(currentGuess, secretWord)
-		const newGuessedWords = [...guessedWords, { guessedWords: currentGuess, letterMatchCount }]
+		const newGuessedWords = [...guessedWords, { guessedWord: currentGuess, letterMatchCount }]
 		setGuessedWords(newGuessedWords)
 
 		if (currentGuess === secretWord) {
