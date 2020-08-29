@@ -5,14 +5,20 @@ import languageContext from './contexts/languageContext';
 import successContext from './contexts/successContext';
 import stringsModule from './helpers/strings';
 
-const Input = (props) => {
+const Input = ({ secretWord }) => {
 	const [ currentGuess, setCurrentGuess ] = React.useState('');
 	const language = React.useContext(languageContext);
 	const [success, setSuccess] = successContext.useSuccess();
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		setCurrentGuess(currentGuess)
+
+		if (currentGuess === secretWord) {
+			setSuccess(true)
+		}
+		// clearing Input Box 
+
+		setCurrentGuess("")
 	}
 
 	if (success) { return null }
